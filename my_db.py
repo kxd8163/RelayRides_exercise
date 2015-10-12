@@ -19,8 +19,7 @@ class MyDatabase(object):
     self._history = []
   
   def begin(self):
-    # creates a new 
-    #self._history.insert(0, {})
+    # creates a new state capture
     self._history.append({})
 
   def get(self, name):
