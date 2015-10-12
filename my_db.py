@@ -42,7 +42,7 @@ class MyDatabase(object):
     self._set(name, val)
 
   def _set(self, name, val):
-    # change value name for key that already exist
+    # set value for key (name) if value is is not None (no rollback flow)
     if (val != None):
       self._db[name] = val
     #if we are rolling back changes - None is passed as a val, so we need to remove the corresponding 
@@ -51,7 +51,7 @@ class MyDatabase(object):
       del self._db[name]
 
   def rollback(self):
-    # read from the most recent and apply rollbacks
+    # read from the most recent state capture and apply rollbacks
     if self._history:
       for key, val in self._history[-1].items():
         self._set(key, val)
